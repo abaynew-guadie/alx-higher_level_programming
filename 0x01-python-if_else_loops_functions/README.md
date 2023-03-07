@@ -1,1 +1,1 @@
- Inventing is a combination of brains and materials. 
+a program that prints all numbers from 0 to 98 in decimal and in hexadecimal
