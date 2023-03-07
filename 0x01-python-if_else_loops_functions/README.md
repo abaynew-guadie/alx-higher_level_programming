@@ -1,1 +1,1 @@
-a function that creates a copy of the string, removing the character at the position n (not the Python way, the “C array index”).
+the Python function def magic_calculation(a, b, c): that does exactly the same as the following Python bytecode:
