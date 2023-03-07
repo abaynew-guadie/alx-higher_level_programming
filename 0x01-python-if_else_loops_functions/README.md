@@ -1,1 +1,1 @@
-the Python function def magic_calculation(a, b, c): that does exactly the same as the following Python bytecode:
+ a function that prints the numbers from 1 to 100 separated by a space.
