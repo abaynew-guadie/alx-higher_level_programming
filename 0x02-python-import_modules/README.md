@@ -1,1 +1,1 @@
-Infinite addition
+How to make a script dynamic!
