@@ -1,1 +1,1 @@
-Delete by value
+CPython #1: PyBytesObject
