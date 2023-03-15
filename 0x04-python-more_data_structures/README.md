@@ -1,1 +1,1 @@
-Multiply by 2
+Best score
