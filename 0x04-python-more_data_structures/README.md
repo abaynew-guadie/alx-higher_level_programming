@@ -1,1 +1,1 @@
-Weighted average!
+Squared by using map
