@@ -1,1 +1,1 @@
-0x00-python-hello_world , The basic Python concepts.
+0x06. Python - Classes and Objects
