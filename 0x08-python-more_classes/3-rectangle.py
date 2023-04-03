@@ -57,3 +57,16 @@ class Rectangle:
             return (0)
         else:
             return (2 * (self.__width + self.__height))
+
+    def __str__(self):
+        """prints object as string"""
+        if self.__width == 0 or self.__height == 0:
+            return ("")
+
+        else:
+            rect = []
+            for h in range(self.__height):
+                [rect.append("#") for w in range(self.__width)]
+                if h != self.__height - 1:
+                    rect.append("\n")
+            return ("".join(rect))
