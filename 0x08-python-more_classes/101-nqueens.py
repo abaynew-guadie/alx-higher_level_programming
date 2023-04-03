@@ -1,63 +1,49 @@
 #!/usr/bin/python3
-"""N Queens Module.
+'''Module for N Queens problem.'''
 
-Contains the N Queens problem solver.
-"""
-import sys
-
-
-def error_exit(message="", code=1):
-    """Handles exit.
-
+def isSafe(board, row, col):
+    '''Checks if position is safe from attack.
     Args:
-        message (str): the message to display on stdout.
-        code (int): the exit code.
-    """
-    print(message)
-    exit(code)
-
-
-def test_pos(board, y):
-    """Tests if wether a queen can be placed at the current position.
-
-    Args:
-        board (list): the chessboard.
-        y (int): the height parameter.
-    """
-    for i in range(y):
-        if board[y][1] is board[i][1]:
-            return False
-        if abs(board[y][1] - board[i][1]) == y - i:
+        board: The board state.
+        row: The row to check.
+        col: The colum to check.
+    '''
+    for c in range(col):
+        if board[c] is row or abs(board[c] - row) is abs(c - col):
             return False
     return True
 
-
-def rec_backtrack(board, y):
-    """Backtrack the possibilities.
+def checkBoard(board, col):
+    '''Checks the board state column by column using backtracking.
 
     Args:
-        board (list): the chessboard.
-        y (int): the height parameter.
-    """
-    if y is N:
-        print(board)
-    else:
-        for x in range(N):
-            board[y][1] = x
-            if test_pos(board, y):
-                rec_backtrack(board, y + 1)
+        board: The board state.
+        col: The current colum to check.
+    '''
+    n = len(board)
+    if col is n:
+        print(str([[c, board[c]] for c in range(n)]))
+        return
 
+    for row in range(n):
+        if isSafe(board, row, col):
+            board[col] = row
+            checkBoard(board, col + 1)
 
-if len(sys.argv) is not 2:
-    error_exit("Usage: nqueens N")
+if __name__ == "__main__":
+    import sys
 
-try:
-    N = int(sys.argv[1])
-except:
-    error_exit("N must be a number")
-
-if N < 4:
-    error_exit("N must be at least 4")
-
-board = [[y, 0] for y in range(N)]
-rec_backtrack(board, 0)
+    if len(sys.argv) != 2:
+        print("Usage: nqueens N")
+        sys.exit(1)
+    n = 0
+    try:
+        n = int(sys.argv[1])
+    except:
+        print("N must be a number")
+        sys.exit(1)
+    if n < 4:
+        print("N must be at least 4")
+        sys.exit(1)
+    board = [0 for col in range(n)]
+    checkBoard(board, 0)
