@@ -1,7 +1,5 @@
 #!/usr/bin/python3
 '''Module for N Queens problem.'''
-
-
 def isSafe(board, row, col):
     '''Checks if position is safe from attack.
 
@@ -14,7 +12,6 @@ def isSafe(board, row, col):
         if board[c] is row or abs(board[c] - row) is abs(c - col):
             return False
     return True
-
 
 def checkBoard(board, col):
     '''Checks the board state column by column using backtracking.
