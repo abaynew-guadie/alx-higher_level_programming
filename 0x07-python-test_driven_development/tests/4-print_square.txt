@@ -1,4 +1,4 @@
-Author: Abaynew 
+Author: Abaynew G
 
 Defines a function that prints a square based on the size passed 
 as an argument to the function.
@@ -41,10 +41,9 @@ If size is a float and is less than 0, or not an integer
 	Traceback (most recent call last):
 	TypeError: size must be an integer
 
-	>>> print_square() 
-        Traceback (most recent call last):
-           TypeError:
-              print_square() missing 1 required postional argument: 'size'
+	>>> print_square()
+	Traceback (most recent call last):
+	TypeError: print_square() missing 1 required postional argument: 'size'
 
 	>>> print_square(None)
 	Traceback (most recent call last):

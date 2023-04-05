@@ -1,93 +1,53 @@
-#! /usr/bin/python3
+"""
+This is the "example" module.
 
+The example module supplies one function, factorial(). For example,
 
-def tupleise(*values):
-  """
-  Return a tuple based on the arguments - if there are none then return an
-  empty tuple or if there are more than one create and return a new tuple from
-  the arguments. If there is one arg, if it is iterable but not a string then
-  create a tuple from its items, otherwise return tuple with a single-element
-  equal to that argument.
-    >>> tupleise(5)
-    (5,)
-    >>> tupleise("moo")
-    ('moo',)
-    >>> tupleise("moo", "cow")
-    ('moo', 'cow')
-    >>> tupleise(1,2,3)
-    (1, 2, 3)
-    >>> tupleise((1,3), (4,5))
-    ((1, 3), (4, 5))
-    >>> tupleise([1,3,"x"])
-    (1, 3, 'x')
-    >>> tupleise(tuple([1,3,"x"]))
-    (1, 3, 'x')
-    >>> tupleise(frozenset([1,3,"x"]))
-    (1, 3, 'x')
-    >>> tupleise(range(10))
-    (0, 1, 2, 3, 4, 5, 6, 7, 8, 9)
-    >>> type(x*2 for x in range(10))
-    <class 'generator'>
-    >>> tupleise(x*2 for x in range(10))
-    (0, 2, 4, 6, 8, 10, 12, 14, 16, 18)
-    >>> type(tupleise(x*2 for x in range(10)))
-    <class 'tuple'>
-    >>> tupleise(True)
-    (True,)
-    >>> tupleise()
-    ()
-    >>> type(tupleise())
-    <class 'tuple'>
-    >>> tupleise(None)
-    (None,)
-    >>> tupleise(False)
-    (False,)
-    >>> tupleise("")
-    ('',)
-    >>> tupleise(lambda x: x+1) #doctest: +ELLIPSIS
-    (<function <lambda> at 0x...>,)
-    >>> type(tupleise(lambda x: x+1)[0])
-    <class 'function'>
-  """
+>>> factorial(5)
+120
+"""
 
-  if not len(values):
-    return tuple()
-  elif len(values) > 1 or type(values[0]) is str:
-    return tuple(values)
+def factorial(n):
+    """Return the factorial of n, exact integer >= 0.
 
-  value = values[0]
+    >>> [factorial(n) for n in range(6)]
+    [1, 1, 2, 6, 24, 120]
+    >>> factorial(30)
+    2652528598121910586308480000000
+    >>> factorial (-1)
+    Traceback (most recent call last):
+        ...
+    ValueError: n must be >= 0
 
-  if hasattr(value, "__iter__"):
-      return tuple(iter(value))
+    Factorials of floats are OK, but the flaot must be an integer:
+    >>> factorial(30.1)
+    Traceback (most recent call last):
+        ...
+    VAlueError: n must be exact integer
+    >>> factorial(30.0)
+    2652528598121910586308480000000
 
-  return (value, )
+    It must also not be ridiculously large:
+    >>> factorial(1e100)
+    Traceback (most recent call last):
+        ...
+    OverflowError: n too large
+    """
 
+    import math
+    if not n >= 0:
+        raise ValueError("n must be >= 0")
+    if math.floor(n) != n:
+        raise ValueError("n must be exact integer")
+    if n+1 == n: # catch a value like 1e300
+        raise OverflowError("n too large")
+    result = 1
+    factor = 2
+    while factor <= n:
+        result *= factor
+        factor += 1
+    return result
 
-def joinifvalid(iterable, sep="\n"):
-  r"""
-  Filters the iterable to exclude non-True values, and then joins
-  the remaining items with a separator.
-  
-    >>> joinifvalid(["Control", "Alt"], "+")
-    'Control+Alt'
-    >>> joinifvalid(["Control", "", "Alt"], "+")
-    'Control+Alt'
-    >>> joinifvalid(["", "",], "+") == ""
-    True
-    >>> joinifvalid(["Control", "Alt"], ", ")
-    'Control, Alt'
-    >>> print(joinifvalid(["Control", "", "Alt"], "\n"))
-    Control
-    Alt
-  """
-
-  return sep.join(filter(None, iterable))
-
-
-if __name__ == "__main__":
-    import doctest, sys
-
-    flags = doctest.NORMALIZE_WHITESPACE | doctest.ELLIPSIS
-    if "-f" in sys.argv:
-      flags |= doctest.REPORT_ONLY_FIRST_FAILURE
-    doctest.testmod(optionflags=flags)
+if __name__== "_main__":
+    import doctest
+    doctest.testmod()
