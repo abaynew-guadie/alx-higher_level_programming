@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Author: 
+# Author:
 
 """
     Defines a function that prints a text with 2
