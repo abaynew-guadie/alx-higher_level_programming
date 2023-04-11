@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# Abaynew 
+# Abaynew
 """"
     Defines a function that returns the JSON representationof an object
 """
