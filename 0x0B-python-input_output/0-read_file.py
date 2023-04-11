@@ -1,17 +1,15 @@
 #!/usr/bin/python3
-#abaynew g
-
-""" This module defines a function that reads a text
-    file (UTF8) and prints it to stdout.
+"""
+Module for read_file method.
 """
 
 
 def read_file(filename=""):
-    """ Read a UTF8 text file and
-        print it to stdout.
-        param: filename - the file to open and read.
     """
-    with open(filename) as f:
-        text = f.read()
-        for t in text:
-            print(t, end='')
+    Reads text file and prints to STDOUT
+    """
+
+    with open(filename, "r", encoding="UTF-8") as f:
+        for line in f:
+            print(line, end="")
+
