@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-# 2022/23 Software Engineer at ALX students 
+# 2022/23 Software Engineer at ALX students
 """Defines a base model class."""
 import json
 import csv
